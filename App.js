@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AnnualLog from "./components/AnnualLog";
+import DailyLog from "./components/DailyLog";
+import Map from "./components/Map";
+import MonthlyLog from "./components/MonthlyLog";
+import TableStats from "./components/TableStats";
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Map'>
+        <Stack.Screen
+          name='Map'
+          component={Map}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='AnnualLog'
+          component={AnnualLog}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='DailyLog'
+          component={DailyLog}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='MonthlyLog'
+          component={MonthlyLog}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='TableStats'
+          component={TableStats}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
