@@ -16,7 +16,7 @@ export default function AnnualLog({navigation}) {
             })
         }
 
-        const intervalId = setInterval(fetchData, 1000)
+        const intervalId = setInterval(fetchData, 3000)
         
         return () => clearInterval(intervalId)
     },[])
@@ -74,7 +74,7 @@ export default function AnnualLog({navigation}) {
                     </ScrollView>
                     <View style={styles.tableFooter}>
                         <Text style={styles.tableFooterText}>TOTAL:</Text>
-                        <Text style={styles.tableFooterText}>{total}KM</Text>
+                        <Text style={styles.tableFooterText}>{total.toFixed(2)}KM</Text>
                     </View>
                 </View>
             </View>

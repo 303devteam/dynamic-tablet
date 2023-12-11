@@ -11,7 +11,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='DailyLog'>
+      <Stack.Navigator initialRouteName='Map'>
         <Stack.Screen
           name='Map'
           component={Map}

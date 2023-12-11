@@ -16,7 +16,7 @@ export default function DailyLog({navigation}) {
             })
         }
 
-        const intervalId = setInterval(fetchData, 1000)
+        const intervalId = setInterval(fetchData, 3000)
         
         return () => clearInterval(intervalId)
     }, [])
@@ -58,7 +58,7 @@ export default function DailyLog({navigation}) {
                         </View>
                         {
                             dailyLog.map((item, index) => {
-                                total += item.commercial_revenue + item.private_member_revenue + item.member_revenue;
+                                total += item.revenue
                                 return(
                                     <View key={index} style={styles.tableEntry}>
                                         <Text style={styles.tableEntryText}>{item.table_id}</Text>
@@ -72,7 +72,7 @@ export default function DailyLog({navigation}) {
                     </ScrollView>
                     <View style={styles.tableFooter}>
                         <Text style={styles.tableFooterText}>TOTAL:</Text>
-                        <Text style={styles.tableFooterText}>{total}KM</Text>
+                        <Text style={styles.tableFooterText}>{total.toFixed(2)}KM</Text>
                     </View>
                 </View>
             </View>
