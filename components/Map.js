@@ -21,7 +21,7 @@ export default function Map({navigation}) {
     }
     
     const endGame = async () => {
-        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/endGame/3`).then(res => {
+        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/endGame/${tableId}`).then(res => {
             setOpen2(false)
         })
     }
