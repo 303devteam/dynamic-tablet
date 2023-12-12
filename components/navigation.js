@@ -9,11 +9,9 @@ export default function Navigation(props) {
           setFontLoaded(true)
         })
       })
-  
       if (!fontLoaded) {
         return null
       }
-    
     return(
         <>
                 <View style={styles.navigation} >
@@ -35,15 +33,7 @@ export default function Navigation(props) {
                         </View>
                         <Text style={styles.navButtonText}>DAILY LOG</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('TableStats')} activeOpacity={0.5} style={styles.navButton}>
-                        <View style={styles.imageContainer}>
-                            <Image
-                                source={require('../assets/images/stats.png')}
-                                style={{width: 30, height:30}}
-                            />
-                        </View>
-                        <Text style={styles.navButtonText}>TABLE STATS</Text>
-                    </TouchableOpacity>
+                
                     <TouchableOpacity onPress={() => props.navigation.navigate('MonthlyLog')} activeOpacity={0.5} style={styles.navButton}>
                         <View style={styles.imageContainer}>
                             <Image

@@ -4,11 +4,8 @@ import AnnualLog from "./components/AnnualLog";
 import DailyLog from "./components/DailyLog";
 import Map from "./components/Map";
 import MonthlyLog from "./components/MonthlyLog";
-import TableStats from "./components/TableStats";
-
 export default function App() {
   const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Map'>
@@ -30,11 +27,6 @@ export default function App() {
         <Stack.Screen
           name='MonthlyLog'
           component={MonthlyLog}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name='TableStats'
-          component={TableStats}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
