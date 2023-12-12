@@ -27,15 +27,9 @@ export default function Map({navigation}) {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/tables').then(res => {
-                setTables(res.data)
-            })
-        }
-
-        const intervalId = setInterval(fetchData, 2000)
-        
-        return () => clearInterval(intervalId)
+        axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/tables').then(res => {
+            setTables(res.data)
+        })
     }, [])
 
     useEffect(() => {

@@ -10,16 +10,10 @@ export default function AnnualLog({navigation}) {
     let total = 0
 
     useEffect(() => {
-        const fetchData = async () => {
-            axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/annualLog').then(res => {
-                setAnnualLog(res.data)
-            })
-        }
-
-        const intervalId = setInterval(fetchData, 3000)
-        
-        return () => clearInterval(intervalId)
-    },[])
+        axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/annualLog').then(res => {
+            setAnnualLog(res.data)
+        })
+    }, [])
 
     useEffect(() => {
         useCustomFonts().then(() => {
