@@ -29,12 +29,16 @@ export default function Map({navigation}) {
     useEffect(() => {
         axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/tables').then(res => {
             setTables(res.data)
+        }).catch((err) => {
+            console.error('Error fetching data')
         })
     }, [])
 
     useEffect(() => {
         axios.get(`https://dynamic-routes-f4txc.ondigitalocean.app/table/${tableId}`).then(res => {
             setTable(res.data)
+        }).catch((err) => {
+            console.error('Error fetching data')
         })
     }, [tableId])
 
