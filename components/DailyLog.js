@@ -55,10 +55,10 @@ export default function DailyLog({navigation}) {
                                 total += item.revenue
                                 return(
                                     <View key={index} style={styles.tableEntry}>
-                                        <Text style={styles.tableEntryText}>{item.table_id}</Text>
-                                        <Text style={styles.tableEntryText}>{item.game_time}</Text>
-                                        <Text style={styles.tableEntryText}>{item.player_type}</Text>
-                                        <Text style={styles.tableEntryText}>{item.revenue}</Text>
+                                        <Text style={styles.tableEntryText}>{(item.table_id).toFixed(2)}</Text>
+                                        <Text style={styles.tableEntryText}>{(item.game_time).toFixed(2)}</Text>
+                                        <Text style={styles.tableEntryText}>{(item.player_type).toFixed(2)}</Text>
+                                        <Text style={styles.tableEntryText}>{(item.revenue).toFixed(2)}</Text>
                                     </View>
                                 )
                             })
