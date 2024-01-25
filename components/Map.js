@@ -1,4 +1,3 @@
-import  useCustomFonts  from '../assets/fonts/expo-fonts';
 import Navigation from './navigation';
 import { Dialog } from '@rneui/themed';
 import { useState, useEffect } from "react";
@@ -15,13 +14,13 @@ export default function Map({navigation}) {
     const [playerType, setPlayerType] = useState('')
 
     const startGame = async () => {
-        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/startGame/${tableId}/${playerType}`).then(res => {
+        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/startGame/${tableId}`).then(res => {
             setOpen(false)
         })
     }
-    
+
     const endGame = async () => {
-        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/endGame/${tableId}`).then(res => {
+        axios.put(`https://dynamic-routes-f4txc.ondigitalocean.app/endGame/${tableId}/${playerType}`).then(res => {
             setOpen2(false)
         })
     }
@@ -29,25 +28,19 @@ export default function Map({navigation}) {
     useEffect(() => {
         axios.get('https://dynamic-routes-f4txc.ondigitalocean.app/tables').then(res => {
             setTables(res.data)
+        }).catch((err) => {
+            console.error('Error fetching data')
         })
-    }, [])
+    }, [open, open2])
 
     useEffect(() => {
         axios.get(`https://dynamic-routes-f4txc.ondigitalocean.app/table/${tableId}`).then(res => {
             setTable(res.data)
+        }).catch((err) => {
+            console.error('Error fetching data')
         })
     }, [tableId])
 
-    useEffect(() => {
-        useCustomFonts().then(() => {
-          setFontLoaded(true)
-        })
-      })
-  
-      if (!fontLoaded) {
-        return null
-      }
-    
     return(
         <>
             <View style={styles.container}>
@@ -253,12 +246,8 @@ export default function Map({navigation}) {
                                 <Text style={styles.statusTitle}>Status:</Text>
                                 <Text style={styles.status}>{table.status}</Text>
                             </View>
-                            <Text style={styles.playerType}>PLAYER TYPE: {playerType}</Text>
-                            <View style={styles.buttonSection}>
-                                <TouchableOpacity onPress={() => setPlayerType('Member')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>MEMBER</Text></TouchableOpacity>
-                                <TouchableOpacity onPress={() => setPlayerType('Private')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>PRIVATE</Text></TouchableOpacity>
-                                <TouchableOpacity onPress={() => setPlayerType('Comm')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>COMMERCIAL</Text></TouchableOpacity>
-                            </View>
+                            <Text style={styles.playerType}>Do you want to start game?</Text>
+            
                             <TouchableOpacity onPress={() => startGame()} activeOpacity={0.5} style={styles.startButton}><Text style={styles.buttonText}>START GAME</Text></TouchableOpacity>
                         </Dialog>
                         <Dialog
@@ -271,9 +260,11 @@ export default function Map({navigation}) {
                                 <Text style={styles.statusTitle}>Status:</Text>
                                 <Text style={styles.status2}>OCCUPIED</Text>
                             </View>
-                            <View style={styles.tableStatus}>
-                                <Text style={styles.statusTitle}>Player Type:</Text>
-                                <Text style={styles.statusTitle}>Member</Text>
+                            <Text style={styles.playerType}>PLAYER TYPE: {playerType}</Text>
+                            <View style={styles.buttonSection}>
+                                <TouchableOpacity onPress={() => setPlayerType('Member')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>MEMBER</Text></TouchableOpacity>
+                                <TouchableOpacity onPress={() => setPlayerType('Private')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>PRIVATE</Text></TouchableOpacity>
+                                <TouchableOpacity onPress={() => setPlayerType('Comm')} activeOpacity={0.5} style={styles.playerButton}><Text style={styles.buttonText}>COMMERCIAL</Text></TouchableOpacity>
                             </View>
                             <TouchableOpacity onPress={() => endGame()} activeOpacity={0.5} style={styles.endButton}><Text style={styles.buttonText}>END GAME</Text></TouchableOpacity>
                         </Dialog>
@@ -422,7 +413,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 1,
         shadowRadius: 3,
-        elevation: 5, // for Android shadow
+        elevation: 5, 
     },
     endButton: {
         display: 'flex',
@@ -438,7 +429,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 1,
         shadowRadius: 3,
-        elevation: 5, // for Android shadow
+        elevation: 5, 
     },
     playerType: {
         paddingRight: 10,
